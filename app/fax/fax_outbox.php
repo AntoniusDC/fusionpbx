@@ -24,6 +24,9 @@
 	Mark J Crane <markjcrane@fusionpbx.com>
 */
 
+//disabled
+	exit;
+
 //includes
 	include "root.php";
 	require_once "resources/require.php";
