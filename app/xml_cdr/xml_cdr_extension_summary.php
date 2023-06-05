@@ -46,12 +46,15 @@
 	$language = new text;
 	$text = $language->get();
 
+//set additional variables
+	$show = $_GET["show"] ?? '';
+
 //retrieve submitted data
 	if (!empty($_REQUEST)) {
-		$quick_select = $_REQUEST['quick_select'];
-		$start_stamp_begin = $_REQUEST['start_stamp_begin'];
-		$start_stamp_end = $_REQUEST['start_stamp_end'];
-		$include_internal = $_REQUEST['include_internal'];
+		$quick_select = $_REQUEST['quick_select'] ?? '';
+		$start_stamp_begin = $_REQUEST['start_stamp_begin'] ?? '';
+		$start_stamp_end = $_REQUEST['start_stamp_end'] ?? '';
+		$include_internal = $_REQUEST['include_internal'] ?? '';
 	}
 	else {
 		$quick_select = 3; //set default
@@ -120,7 +123,7 @@
 	echo "<div class='action_bar' id='action_bar'>\n";
 	echo "	<div class='heading'><b>".$text['title-extension_summary']."</b></div>\n";
 	echo "	<div class='actions'>\n";
-	if (permission_exists('xml_cdr_extension_summary_all') && $_GET['show'] != 'all') {
+	if (permission_exists('xml_cdr_extension_summary_all') && $show != 'all') {
 		echo button::create(['type'=>'button','label'=>$text['button-show_all'],'icon'=>$_SESSION['theme']['button_icon_all'],'collapse'=>'hide-sm-dn','link'=>'xml_cdr_extension_summary.php?show=all']);
 	}
 	echo button::create(['type'=>'button','label'=>$text['button-download_csv'],'icon'=>$_SESSION['theme']['button_icon_download'],'collapse'=>'hide-sm-dn','link'=>'xml_cdr_extension_summary.php?'.(!empty($_SERVER["QUERY_STRING"]) ? $_SERVER["QUERY_STRING"].'&' : null).'type=csv']);
